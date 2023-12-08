@@ -1,20 +1,24 @@
-const MovieInfo = ({ movieobj }) => {
+import "./MovieInfo.css";
+
+const MovieInfo = ({ movieObj: movieObj }) => {
   return (
-    <div className="flex-item">
-      <h4>{movieobj.title}</h4>
-      <div>
+    movieObj && (
+      <div className="flex-item">
+        <h4>{movieObj.title}</h4>
         <div>
-          <span>Running Time</span>
-          <span>{movieobj.runningTime}</span>
+          <div className="data-item">
+            <span>Running Time</span>
+            <span>{movieObj.runningTime}</span>
+          </div>
+        </div>
+        <div>
+          <div className="data-item">
+            <span>Genre</span>
+            <span>{movieObj.genre}</span>
+          </div>
         </div>
       </div>
-      <div>
-        <div>
-          <span>Genre</span>
-          <span>{movieobj.genre}</span>
-        </div>
-      </div>
-    </div>
+    )
   );
 };
 

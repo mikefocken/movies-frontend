@@ -9,6 +9,8 @@ import initData from "./data/data";
 function App() {
   const [movies, setMovies] = useState([]);
 
+  const [activeIndex, setActiveIndex] = useState(-1);
+
   useEffect(() => {
     setMovies(initData);
   }, []);
@@ -18,18 +20,18 @@ function App() {
     setMovies(updatedMovies);
   };
 
-  const selectedMovie = {
-    title: "Forrest Gump",
-    runningTime: 142,
-    genre: "Romantic Drama",
-  };
+  const selectedMovie = movies[activeIndex];
 
   return (
     <div className="App">
       <Header />
       <div className="flex-container">
-        <MovieList movies={movies} />
-        <MovieInfo movieobj={selectedMovie} />
+        <MovieList
+          movies={movies}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+        />
+        <MovieInfo movieObj={selectedMovie} />
         <NewMovieForm onNewMovie={handleNewMovie} />
       </div>
     </div>
