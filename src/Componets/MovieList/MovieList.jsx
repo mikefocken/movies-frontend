@@ -1,12 +1,17 @@
+import MovieItem from "../MovieItem/MovieItem";
+
 const MovieList = ({}) => {
-    const movies =['Princess Brinde', 'Forrest Gump','Iron Man','Pulp Fiction']
-    const movieItems =movies.map((movie,)=> <div>{movie}</div>)
+  const movies = [
+    "Princess Brinde",
+    "Forrest Gump",
+    "Iron Man",
+    "Pulp Fiction",
+  ];
+  const movieItems = movies.map((movie) => <MovieItem key={movie} title={movie} />);
   return (
-    <div>
+    <div className="flex-item">
       <h4>My Movies</h4>
-      <div>
-       {movieItems}
-      </div>
+      <div>{movieItems}</div>
     </div>
   );
 };

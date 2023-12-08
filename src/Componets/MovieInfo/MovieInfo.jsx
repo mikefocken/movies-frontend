@@ -1,6 +1,6 @@
-const MovieInfo = ({movieobj}) => {
-    return (
-    <div>
+const MovieInfo = ({ movieobj }) => {
+  return (
+    <div className="flex-item">
       <h4>{movieobj.title}</h4>
       <div>
         <div>

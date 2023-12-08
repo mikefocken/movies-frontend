@@ -13,8 +13,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <MovieList />
-      <MovieInfo movieobj={selectedMovie} />
+      <div className="flex-container">
+        <MovieList />
+        <MovieInfo movieobj={selectedMovie} />
+      </div>
     </div>
   );
 }
