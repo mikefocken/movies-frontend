@@ -4,15 +4,25 @@ import MovieList from "./Componets/MovieList/MovieList";
 import MovieInfo from "./Componets/MovieInfo/MovieInfo";
 import NewMovieForm from "./Componets/NewMovieForm/NewMovieForm";
 import React, { useState, useEffect } from "react";
-import initData from "./data/data";
+import axios from "axios";
 
 function App() {
   const [movies, setMovies] = useState([]);
 
   const [activeIndex, setActiveIndex] = useState(-1);
 
+  const fetchMovies = async () => {
+    try {
+      const response = await axios.get("http://localhost:5122/api/Movies");
+      // console.log(response);
+      setMovies(response.data);
+    } catch (error) {
+      console.warn("Error in fetchMovies request:", error);
+    }
+  };
+
   useEffect(() => {
-    setMovies(initData);
+    fetchMovies();
   }, []);
 
   const handleNewMovie = (newMovie) => {
@@ -25,6 +35,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+
       <div className="flex-container">
         <MovieList
           movies={movies}
