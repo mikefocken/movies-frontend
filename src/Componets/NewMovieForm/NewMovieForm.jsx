@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TextField from "../TextField/TextField";
+import axios from "axios";
 
 const NewMovieForm = ({ onNewMovie }) => {
   const [title, setTitle] = useState("");
@@ -8,14 +9,24 @@ const NewMovieForm = ({ onNewMovie }) => {
 
   const [genre, setGenre] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
       title,
       runningTime,
       genre,
     };
-    onNewMovie(formData);
+    try {
+      const response = await axios.post(
+        "http://localhost:5122/api/Movies",
+        formData
+      );
+      if (response.status === 201) {
+        onNewMovie();
+      }
+    } catch (error) {
+      console.warn("Error Submitting new movie form: ", error);
+    }
   };
 
   return (
